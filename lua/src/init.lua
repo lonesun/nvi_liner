@@ -14,6 +14,8 @@ function liner.toggle(marker)
 
     local line = vim.api.nvim_get_current_line()
     local prefix = line:sub(1, 1)
+    local replacement = (prefix == "-" or prefix == "+") and " " or marker
+    vim.api.nvim_buf_set_text(buffer, row - 1, 0, row - 1, 1, { replacement })
     return true
 end
 
