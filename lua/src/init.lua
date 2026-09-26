@@ -20,6 +20,12 @@ function liner.toggle(marker)
 end
 
 function liner.setup()
+    local group = vim.api.nvim_create_augroup("N'viLiner", { clear = true })
+
+    for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buffer) then
+        end
+    end
 end
 
 return liner
