@@ -10,6 +10,8 @@ function liner.toggle(marker)
         return false
     end
 
+    local row = vim.api.nvim_win_get_cursor(0)[1]
+
     local line = vim.api.nvim_get_current_line()
     local prefix = line:sub(1, 1)
     return true
