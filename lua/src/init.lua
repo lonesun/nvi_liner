@@ -1,9 +1,17 @@
 local liner = {}
 
+---Is this line part of a hunk body?
+---@param buffer any "The buffer number(?) to check."
+---@param row any "The row number to check."
+---@return boolean "`true` if the line is part of a hunk body, `false` otherwise."
 local function line_is_from_hunk_check(buffer, row)
     local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
     local in_hunk = false
+
+        local line = lines[index]
+        local prefix = line:sub(1, 1)
 end
+
 
 function liner.toggle(marker)
     if marker ~= "-" and marker ~= "+" then
