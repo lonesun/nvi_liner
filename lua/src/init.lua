@@ -71,6 +71,24 @@ end
 
 function liner.setup()
     local group = vim.api.nvim_create_augroup("NviLiner", { clear = true })
+    vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        callback = function(event)
+            if vim.bo[event.buf].filetype == "diff" then
+                attach(event.buf)
+            else
+                for _, key in ipairs({ "-", "=" }) do
+                    local mapping = vim.api.nvim_buf_get_keymap(event.buf, "n")
+                    for _, entry in ipairs(mapping) do
+                        if entry.lhs == key and entry.desc == "Toggle diff "
+                            .. (key == "-" and "deletion" or "addition") .. " prefix" then
+                            vim.keymap.del("n", key, { buffer = event.buf })
+                        end
+                    end
+                end
+            end
+        end,
+    })
 
     for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(buffer) then
