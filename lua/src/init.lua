@@ -1,5 +1,10 @@
 local liner = {}
 
+local function line_is_from_hunk_check(buffer, row)
+    local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
+    local in_hunk = false
+end
+
 function liner.toggle(marker)
     if marker ~= "-" and marker ~= "+" then
         error("Var (marker) must be a character ('-' or '+').")
