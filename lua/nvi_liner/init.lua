@@ -94,6 +94,11 @@ function liner.setup()
         end,
     })
 
+    vim.notify("nvi_liner::setup() - Setup initialised and keymaps attached.", vim.log.levels.INFO, {
+        title = "nvi_liner",
+    })
+ // The program, it finally works! ٩(˶ˆᗜˆ˵)و
+ // To you, the reader, here are the finishing moves: After following the README and reaching the section (Local Development.2), so you should now have an init file for neovim, you need to set nvim as your git editor with `git config --global core.editor "nvim"`. Happy gitting!!!
     for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(buffer) then
             attach(buffer)
