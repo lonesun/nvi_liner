@@ -8,7 +8,11 @@ local function line_is_from_hunk_check(buffer, row)
     local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
     local in_hunk = false
 
-    for index = 1, row do
+    --[[ Explanation:
+         This loop iterates through each line up to the specified row.
+         It checks for diff hunk headers, file headers, and line prefixes
+         to determine if the current line is part of a hunk body.
+    ]] for index = 1, row do
         local line = lines[index]
         local prefix = line:sub(1, 1)
         local file_header = line:match("^%-%-%- ")
