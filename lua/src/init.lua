@@ -60,6 +60,13 @@ local function attach(buffer)
     if vim.bo[buffer].filetype ~= "diff" then
         return
     end
+
+    vim.keymap.set("n", "-", function()
+        liner.toggle("-")
+    end, { buffer = buffer, desc = "Toggle diff deletion prefix" })
+    vim.keymap.set("n", "=", function()
+        liner.toggle("+")
+    end, { buffer = buffer, desc = "Toggle diff addition prefix" })
 end
 
 function liner.setup()
