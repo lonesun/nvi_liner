@@ -56,11 +56,18 @@ function liner.toggle(marker)
     return true
 end
 
+local function attach(buffer)
+    if vim.bo[buffer].filetype ~= "diff" then
+        return
+    end
+end
+
 function liner.setup()
     local group = vim.api.nvim_create_augroup("NviLiner", { clear = true })
 
     for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(buffer) then
+            attach(buffer)
         end
     end
 end
